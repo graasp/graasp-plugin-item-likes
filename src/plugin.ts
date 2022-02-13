@@ -15,7 +15,7 @@ const plugin: FastifyPluginAsync = async (fastify) => {
 
   //get ids of liked items
   fastify.get<{ Params: { memberId: string } }>(
-    '/:memberId/liked-items',
+    '/:memberId/likes',
     { schema: getLikedItems },
     async ({ member, params: { memberId }, log }) => {
       const task = taskManager.createGetLikedItemsTask(member, memberId);
@@ -39,7 +39,7 @@ const plugin: FastifyPluginAsync = async (fastify) => {
 
   // delete item like entry
   fastify.delete<{ Params: { entryId: string } }>(
-    '/like/:entryId',
+    '/likes/:entryId',
     { schema: deleteOne },
     async ({ member, params: { entryId }, log }) => {
       const task = taskManager.createDeleteItemLikeTask(

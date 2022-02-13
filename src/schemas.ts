@@ -1,5 +1,7 @@
 export const getLikedItems = {
-  params: { $ref: 'http://graasp.org/#/definitions/uuid' },
+  params: { 
+    memberId: { $ref: 'http://graasp.org/#/definitions/uuid' },
+  },
   response: {
     200: {
       type: 'array',

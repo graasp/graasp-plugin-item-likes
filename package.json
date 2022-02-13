@@ -1,5 +1,5 @@
 {
-  "name": "graasp-plugin-item-like",
+  "name": "graasp-plugin-item-likes",
   "author": "Graasp Association",
   "version": "0.1.0",
   "description": "Repository template for Graasp",
@@ -18,12 +18,12 @@
     "test:watch": "yarn test --watchAll",
     "lint": "eslint ."
   },
-  "repository": "git@github.com:graasp/graasp-plugin-item-like.git",
+  "repository": "git@github.com:graasp/graasp-plugin-item-likes.git",
   "license": "AGPL",
   "bugs": {
-    "url": "https://github.com/graasp/graasp-plugin-item-like/issues"
+    "url": "https://github.com/graasp/graasp-plugin-item-likes/issues"
   },
-  "homepage": "https://github.com/graasp/graasp-plugin-item-like#readme",
+  "homepage": "https://github.com/graasp/graasp-plugin-item-likes#readme",
   "devDependencies": {
     "@commitlint/cli": "16.0.1",
     "@commitlint/config-conventional": "16.0.0",

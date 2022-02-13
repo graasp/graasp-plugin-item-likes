@@ -37,5 +37,6 @@ export class CreateItemLikeTask extends BaseItemLikeTask<string> {
       handler,
     );
     this.status = 'OK';
+    this._result = 'Success';
   }
 }

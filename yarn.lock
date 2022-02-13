@@ -3032,9 +3032,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graasp-plugin-item-like@workspace:.":
+"graasp-plugin-item-likes@workspace:.":
   version: 0.0.0-use.local
-  resolution: "graasp-plugin-item-like@workspace:."
+  resolution: "graasp-plugin-item-likes@workspace:."
   dependencies:
     "@commitlint/cli": 16.0.1
     "@commitlint/config-conventional": 16.0.0

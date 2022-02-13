@@ -36,5 +36,6 @@ export class DeleteItemLikeTask extends BaseItemLikeTask<string> {
       handler,
     );
     this.status = 'OK';
+    this._result = 'Success';
   }
 }
