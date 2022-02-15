@@ -1,4 +1,5 @@
 import fastify, { FastifyPluginAsync } from 'fastify';
+import common from '../src/schemas/common';
 
 import {
   TaskRunner,
@@ -23,11 +24,12 @@ const build = async ({
     },
   });
 
+  app.addSchema(common);
+
   app.decorate('taskRunner', runner);
 
   await app.register(plugin, {});
 
   return app;
 };
-
 export default build;

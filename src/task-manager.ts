@@ -48,11 +48,10 @@ export class TaskManager {
 
   createCreateItemLikeTask(
     member: Member,
-    memberId: string,
     itemId: string,
   ): CreateItemLikeTask {
     return new CreateItemLikeTask(
-      { itemId, memberId },
+      { itemId },
       member,
       this.itemLikeService,
     );

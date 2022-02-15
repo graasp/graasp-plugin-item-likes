@@ -3,7 +3,7 @@ import { FastifyPluginAsync } from 'fastify';
 
 // local
 import { ItemLikeService } from './db-service';
-import { create, deleteOne, getLikeCount, getLikedItems } from './schemas';
+import { create, deleteOne, getLikeCount, getLikedItems } from './schemas/schemas';
 import { TaskManager } from './task-manager';
 
 const plugin: FastifyPluginAsync = async (fastify) => {
@@ -43,7 +43,6 @@ const plugin: FastifyPluginAsync = async (fastify) => {
     async ({ member, params: { itemId }, log }) => {
       const task = taskManager.createCreateItemLikeTask(
         member,
-        member.id, 
         itemId,
       );
       return runner.runSingle(task, log);

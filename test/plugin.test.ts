@@ -1,24 +1,23 @@
-import {
-  TaskRunner,
-} from 'graasp-test';
+import Runner from 'graasp-test/src/tasks/taskRunner';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 import plugin from '../src/plugin';
 import build from './app';
 import { buildItem, buildMember, ITEM_LIKES } from './constants';
-const runner = new TaskRunner();
+
+const runner = new Runner();
+
 
 describe('Item Like', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  console.log('aaa');
 
   describe('GET /:memberId/likes', () => {
     it('Get item likes of a user', async () => {
       const app = await build({
-        runner,
         plugin,
+        runner,
       });
       const currentMember = buildMember();
       const result = ITEM_LIKES.filter((entry) => entry.memberId === currentMember.id);

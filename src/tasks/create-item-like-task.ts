@@ -7,7 +7,7 @@ import { ItemLikeService } from '../db-service';
 import { ItemLike } from '../types';
 import { BaseItemLikeTask } from './base-item-like-task';
 
-type InputType = { itemId: string; memberId: string };
+type InputType = { itemId: string };
 
 export class CreateItemLikeTask extends BaseItemLikeTask<ItemLike> {
   input: InputType;
@@ -31,7 +31,8 @@ export class CreateItemLikeTask extends BaseItemLikeTask<ItemLike> {
     this.status = 'RUNNING';
 
     // create entry in item-like
-    const { itemId, memberId } = this.input;
+    const memberId = this.actor.id;
+    const { itemId } = this.input;
     this._result = await this.itemLikeService.createItemLike(
       itemId,
       memberId,
