@@ -9,6 +9,12 @@ export const getLikedItems = {
   },
 };
 
+export const getLikeCount = {
+  params: { 
+    itemId: { $ref: 'http://graasp.org/#/definitions/uuid' },
+  },
+};
+
 export const create = {
   params: { 
     itemId: { $ref: 'http://graasp.org/#/definitions/uuid' },

@@ -4,3 +4,7 @@ export type ItemLike = {
   memberId: string;
   createdAt: string;
 }
+
+export type LikeCount = {
+  count: string;
+}

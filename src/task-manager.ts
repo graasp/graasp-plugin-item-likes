@@ -4,6 +4,7 @@ import { Member } from 'graasp';
 import { ItemLikeService } from './db-service';
 import { CreateItemLikeTask } from './tasks/create-item-like-task';
 import { DeleteItemLikeTask } from './tasks/delete-item-like-task';
+import { GetLikeCountTask } from './tasks/get-like-count-task';
 import { GetLikedItemsTask } from './tasks/get-liked-items-task';
 
 export class TaskManager {
@@ -13,9 +14,12 @@ export class TaskManager {
     this.itemLikeService = itemLikeService;
   }
 
-  // CRUD
   getGetLikedItemsTaskName(): string {
     return GetLikedItemsTask.name;
+  }
+
+  getGetLikeCountTaskName(): string {
+    return GetLikeCountTask.name;
   }
 
   getCreateItemLikeTaskName(): string {
@@ -26,10 +30,17 @@ export class TaskManager {
     return DeleteItemLikeTask.name;
   }
 
-  // CRUD
   createGetLikedItemsTask(member: Member, memberId: string): GetLikedItemsTask {
     return new GetLikedItemsTask(
       { memberId },
+      member,
+      this.itemLikeService,
+    );
+  }
+
+  createGetLikeCountTask(member: Member, itemId: string): GetLikeCountTask {
+    return new GetLikeCountTask(
+      { itemId },
       member,
       this.itemLikeService,
     );

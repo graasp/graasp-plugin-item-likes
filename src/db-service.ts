@@ -2,7 +2,7 @@
 import { Item } from 'graasp';
 import { sql, DatabaseTransactionConnection as TrxHandler } from 'slonik';
 // local
-import { ItemLike } from './types';
+import { ItemLike, LikeCount } from './types';
 
 /**
  * Database's first layer of abstraction for Categorys
@@ -41,7 +41,7 @@ export class ItemLikeService {
   }
 
   /**
-   * Get Items liked by users most
+   * Get most liked items by all users
    */
    async getMostLikedItems(
     dbHandler: TrxHandler,
@@ -59,27 +59,47 @@ export class ItemLikeService {
       .then(({ rows }) => rows.slice(0));
   }
 
+  /**
+   * Get most liked items by all users
+   */
+   async getLikeCount(
+    itemId: string,
+    dbHandler: TrxHandler,
+  ): Promise<LikeCount> {
+    return dbHandler
+      .query<LikeCount>(
+        sql`
+        SELECT count(*)
+        FROM item_like
+        WHERE item_id = ${itemId}
+        `,
+      )
+      .then(({ rows }) => rows[0]);
+  }
+
   async createItemLike(
     itemId: string,
     memberId: string,
     transactionHandler: TrxHandler,
-  ): Promise<string> {
+  ): Promise<ItemLike> {
     return transactionHandler
-      .query<string>(
+      .query<ItemLike>(
         sql`
         INSERT INTO item_like (item_id, member_id)
         VALUES (${itemId}, ${memberId})
         ON CONFLICT DO NOTHING
+        RETURNING *
       `,
       ).then(({ rows }) => rows[0]);
   }
 
-  async deleteItemLike(id: string, transactionHandler: TrxHandler): Promise<string> {
+  async deleteItemLike(id: string, transactionHandler: TrxHandler): Promise<ItemLike> {
     return transactionHandler
-      .query<string>(
+      .query<ItemLike>(
         sql`
         DELETE FROM item_like
         WHERE id = ${id}
+        RETURNING *
       `,
       ).then(({ rows }) => rows[0]);
   }

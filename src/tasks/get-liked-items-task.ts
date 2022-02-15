@@ -30,7 +30,7 @@ export class GetLikedItemsTask extends BaseItemLikeTask<ItemLike[]> {
   ): Promise<void> {
     this.status = 'RUNNING';
 
-    // create entry in item-category
+    // get all liked items by given user
     const { memberId } = this.input;
     this._result = await this.itemLikeService.getLikedItems(
       memberId,

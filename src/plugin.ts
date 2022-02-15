@@ -3,7 +3,7 @@ import { FastifyPluginAsync } from 'fastify';
 
 // local
 import { ItemLikeService } from './db-service';
-import { create, deleteOne, getLikedItems } from './schemas';
+import { create, deleteOne, getLikeCount, getLikedItems } from './schemas';
 import { TaskManager } from './task-manager';
 
 const plugin: FastifyPluginAsync = async (fastify) => {
@@ -23,14 +23,27 @@ const plugin: FastifyPluginAsync = async (fastify) => {
     },
   );
 
+  // get like count
+  fastify.get<{ Params: { itemId: string } }>(
+    '/:itemId/like-count',
+    { schema: getLikeCount },
+    async ({ member, params: { itemId }, log }) => {
+      const task = taskManager.createGetLikeCountTask(
+        member,
+        itemId,
+      );
+      return runner.runSingle(task, log);
+    },
+  );
+
   // create item like entry
-  fastify.post<{ Params: { itemId: string; memberId: string } }>(
-    '/like/:itemId/:memberId',
+  fastify.post<{ Params: { itemId: string } }>(
+    '/:itemId/like',
     { schema: create },
-    async ({ member, params: { itemId, memberId }, log }) => {
+    async ({ member, params: { itemId }, log }) => {
       const task = taskManager.createCreateItemLikeTask(
         member,
-        memberId,
+        member.id, 
         itemId,
       );
       return runner.runSingle(task, log);
