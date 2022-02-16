@@ -43,6 +43,16 @@ export const ITEM_LIKES = [
     id: v4(),
     itemId: buildItem().id,
     memberId: buildMember().id,
-    createdAt: 'timestamp'
+    createdAt: 'timestamp',
+  },
+  {
+    id: v4(),
+    itemId: buildItem().id,
+    memberId: buildMember().id,
+    createdAt: 'timestamp2',
   },
 ];
+
+export const LIKE_COUNT = {
+  count: '0',
+};

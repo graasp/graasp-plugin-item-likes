@@ -25,10 +25,7 @@ export class ItemLikeService {
    * @param memberId user's id
    * @param dbHandler Database handler
    */
-  async getLikedItems(
-    memberId: string,
-    dbHandler: TrxHandler,
-  ): Promise<ItemLike[]> {
+  async getLikedItems(memberId: string, dbHandler: TrxHandler): Promise<ItemLike[]> {
     return dbHandler
       .query<ItemLike>(
         sql`
@@ -43,9 +40,7 @@ export class ItemLikeService {
   /**
    * Get most liked items by all users
    */
-   async getMostLikedItems(
-    dbHandler: TrxHandler,
-  ): Promise<Item[]> {
+  async getMostLikedItems(dbHandler: TrxHandler): Promise<Item[]> {
     return dbHandler
       .query<Item>(
         sql`
@@ -60,12 +55,9 @@ export class ItemLikeService {
   }
 
   /**
-   * Get most liked items by all users
+   * Get like count of given item
    */
-   async getLikeCount(
-    itemId: string,
-    dbHandler: TrxHandler,
-  ): Promise<LikeCount> {
+  async getLikeCount(itemId: string, dbHandler: TrxHandler): Promise<LikeCount> {
     return dbHandler
       .query<LikeCount>(
         sql`
@@ -77,6 +69,11 @@ export class ItemLikeService {
       .then(({ rows }) => rows[0]);
   }
 
+  /**
+   * create a record
+   * @param memberId user's id
+   * @param itemId item's id
+   */
   async createItemLike(
     itemId: string,
     memberId: string,
@@ -90,9 +87,14 @@ export class ItemLikeService {
         ON CONFLICT DO NOTHING
         RETURNING *
       `,
-      ).then(({ rows }) => rows[0]);
+      )
+      .then(({ rows }) => rows[0]);
   }
 
+  /**
+   * delete a record
+   * @param id entry's id
+   */
   async deleteItemLike(id: string, transactionHandler: TrxHandler): Promise<ItemLike> {
     return transactionHandler
       .query<ItemLike>(
@@ -101,6 +103,7 @@ export class ItemLikeService {
         WHERE id = ${id}
         RETURNING *
       `,
-      ).then(({ rows }) => rows[0]);
+      )
+      .then(({ rows }) => rows[0]);
   }
 }

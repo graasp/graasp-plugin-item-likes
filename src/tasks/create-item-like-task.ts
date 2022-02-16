@@ -16,28 +16,18 @@ export class CreateItemLikeTask extends BaseItemLikeTask<ItemLike> {
     return CreateItemLikeTask.name;
   }
 
-  constructor(
-    input: InputType,
-    member: Member,
-    itemLikeService: ItemLikeService,
-  ) {
+  constructor(input: InputType, member: Member, itemLikeService: ItemLikeService) {
     super(member, itemLikeService);
     this.input = input ?? {};
   }
 
-  async run(
-    handler: DatabaseTransactionHandler,
-  ): Promise<void> {
+  async run(handler: DatabaseTransactionHandler): Promise<void> {
     this.status = 'RUNNING';
 
     // create entry in item-like
     const memberId = this.actor.id;
     const { itemId } = this.input;
-    this._result = await this.itemLikeService.createItemLike(
-      itemId,
-      memberId,
-      handler,
-    );
+    this._result = await this.itemLikeService.createItemLike(itemId, memberId, handler);
     this.status = 'OK';
   }
 }

@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 import plugin from '../src/plugin';
 import build from './app';
-import { buildItem, buildMember, ITEM_LIKES } from './constants';
+import { buildItem, buildMember, ITEM_LIKES, LIKE_COUNT } from './constants';
 
 const runner = new Runner();
 
@@ -58,7 +58,7 @@ describe('Item Like', () => {
       });
 
       const item = buildItem();
-      const result = ITEM_LIKES.filter((entry) => entry.itemId === item.id).length;
+      const result = LIKE_COUNT;
       jest
         .spyOn(runner, 'runSingle')
         .mockImplementation(async () => result);

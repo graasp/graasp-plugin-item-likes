@@ -16,26 +16,17 @@ export class GetLikedItemsTask extends BaseItemLikeTask<ItemLike[]> {
     return GetLikedItemsTask.name;
   }
 
-  constructor(
-    input: InputType,
-    member: Member,
-    itemLikeService: ItemLikeService,
-  ) {
+  constructor(input: InputType, member: Member, itemLikeService: ItemLikeService) {
     super(member, itemLikeService);
     this.input = input ?? {};
   }
 
-  async run(
-    handler: DatabaseTransactionHandler,
-  ): Promise<void> {
+  async run(handler: DatabaseTransactionHandler): Promise<void> {
     this.status = 'RUNNING';
 
     // get all liked items by given user
     const { memberId } = this.input;
-    this._result = await this.itemLikeService.getLikedItems(
-      memberId,
-      handler,
-    );
+    this._result = await this.itemLikeService.getLikedItems(memberId, handler);
     this.status = 'OK';
   }
 }

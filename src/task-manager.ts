@@ -31,40 +31,18 @@ export class TaskManager {
   }
 
   createGetLikedItemsTask(member: Member, memberId: string): GetLikedItemsTask {
-    return new GetLikedItemsTask(
-      { memberId },
-      member,
-      this.itemLikeService,
-    );
+    return new GetLikedItemsTask({ memberId }, member, this.itemLikeService);
   }
 
   createGetLikeCountTask(member: Member, itemId: string): GetLikeCountTask {
-    return new GetLikeCountTask(
-      { itemId },
-      member,
-      this.itemLikeService,
-    );
+    return new GetLikeCountTask({ itemId }, member, this.itemLikeService);
   }
 
-  createCreateItemLikeTask(
-    member: Member,
-    itemId: string,
-  ): CreateItemLikeTask {
-    return new CreateItemLikeTask(
-      { itemId },
-      member,
-      this.itemLikeService,
-    );
+  createCreateItemLikeTask(member: Member, itemId: string): CreateItemLikeTask {
+    return new CreateItemLikeTask({ itemId }, member, this.itemLikeService);
   }
 
-  createDeleteItemLikeTask(
-    member: Member,
-    entryId: string,
-  ): DeleteItemLikeTask {
-    return new DeleteItemLikeTask(
-      { id: entryId },
-      member,
-      this.itemLikeService,
-    );
+  createDeleteItemLikeTask(member: Member, entryId: string): DeleteItemLikeTask {
+    return new DeleteItemLikeTask({ id: entryId }, member, this.itemLikeService);
   }
 }

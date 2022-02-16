@@ -41,7 +41,6 @@ export default {
         statusCode: { type: 'number' },
         data: {},
         origin: { type: 'string' },
-        // stack: {}
       },
       additionalProperties: false,
     },

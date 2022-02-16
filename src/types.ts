@@ -3,8 +3,8 @@ export type ItemLike = {
   itemId: string;
   memberId: string;
   createdAt: string;
-}
+};
 
 export type LikeCount = {
   count: string;
-}
+};
