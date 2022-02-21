@@ -2,12 +2,11 @@
 import { DatabaseTransactionHandler, Member } from 'graasp';
 // local
 import { ItemLikeService } from '../db-service';
-import { LikeCount } from '../types';
 import { BaseItemLikeTask } from './base-item-like-task';
 
 type InputType = { itemId: string };
 
-export class GetLikeCountTask extends BaseItemLikeTask<LikeCount> {
+export class GetLikeCountTask extends BaseItemLikeTask<number> {
   input: InputType;
 
   get name(): string {
@@ -24,7 +23,8 @@ export class GetLikeCountTask extends BaseItemLikeTask<LikeCount> {
 
     // get like counts of given item
     const { itemId } = this.input;
-    this._result = await this.itemLikeService.getLikeCount(itemId, handler);
+    const res = await this.itemLikeService.getLikeCount(itemId, handler);
+    this._result = parseInt(res?.count);
     this.status = 'OK';
   }
 }

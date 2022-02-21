@@ -53,6 +53,4 @@ export const ITEM_LIKES = [
   },
 ];
 
-export const LIKE_COUNT = {
-  count: '0',
-};
+export const LIKE_COUNT = 0;
