@@ -23,8 +23,7 @@ export class GetLikeCountTask extends BaseItemLikeTask<number> {
 
     // get like counts of given item
     const { itemId } = this.input;
-    const res = await this.itemLikeService.getLikeCount(itemId, handler);
-    this._result = parseInt(res?.count);
+    this._result = await this.itemLikeService.getLikeCount(itemId, handler);
     this.status = 'OK';
   }
 }
