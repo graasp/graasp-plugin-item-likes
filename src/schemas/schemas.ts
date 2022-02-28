@@ -18,12 +18,7 @@ export default {
       additionalProperties: false,
     },
     likeCount: {
-      type: 'object',
-      properties: {
-        count: {
-          type: 'string',
-        }
-      },
+      type: 'number',
       additionalProperties: false,
     },
   },

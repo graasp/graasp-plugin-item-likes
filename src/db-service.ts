@@ -57,7 +57,7 @@ export class ItemLikeService {
   /**
    * Get like count of given item
    */
-  async getLikeCount(itemId: string, dbHandler: TrxHandler): Promise<LikeCount> {
+  async getLikeCount(itemId: string, dbHandler: TrxHandler): Promise<number> {
     return dbHandler
       .query<LikeCount>(
         sql`
@@ -66,7 +66,7 @@ export class ItemLikeService {
         WHERE item_id = ${itemId}
         `,
       )
-      .then(({ rows }) => rows[0]);
+      .then(({ rows }) => parseInt(rows[0]?.count));
   }
 
   /**
