@@ -1,6 +1,5 @@
-// global
-import { Member } from 'graasp';
-// local
+import { Member } from '@graasp/sdk';
+
 import { ItemLikeService } from './db-service';
 import { CreateItemLikeTask } from './tasks/create-item-like-task';
 import { DeleteItemLikeTask } from './tasks/delete-item-like-task';

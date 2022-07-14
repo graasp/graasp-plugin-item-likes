@@ -1,19 +1,15 @@
 import fastify, { FastifyPluginAsync } from 'fastify';
-import common from '../src/schemas/common';
 
-import {
-  TaskRunner,
-} from 'graasp-test';
+import { TaskRunner } from 'graasp-test';
+
+import common from '../src/schemas/common';
 
 type props = {
   runner: TaskRunner;
   plugin: FastifyPluginAsync;
 };
 
-const build = async ({
-  plugin,
-  runner,
-}: props) => {
+const build = async ({ plugin, runner }: props) => {
   const app = fastify({
     ajv: {
       customOptions: {

@@ -1,12 +1,13 @@
-import Runner from 'graasp-test/src/tasks/taskRunner';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
+
+import Runner from 'graasp-test/src/tasks/taskRunner';
+
 import plugin from '../src/plugin';
 import build from './app';
-import { buildItem, buildMember, ITEM_LIKES, LIKE_COUNT } from './constants';
+import { ITEM_LIKES, LIKE_COUNT, buildItem, buildMember } from './constants';
 
 const runner = new Runner();
-
 
 describe('Item Like', () => {
   beforeEach(() => {
@@ -21,9 +22,7 @@ describe('Item Like', () => {
       });
       const currentMember = buildMember();
       const result = ITEM_LIKES.filter((entry) => entry.memberId === currentMember.id);
-      jest
-        .spyOn(runner, 'runSingle')
-        .mockImplementation(async () => result);
+      jest.spyOn(runner, 'runSingle').mockImplementation(async () => result);
 
       const res = await app.inject({
         method: 'GET',
@@ -38,9 +37,7 @@ describe('Item Like', () => {
         runner,
       });
 
-      jest
-        .spyOn(runner, 'runSingle')
-        .mockImplementation(async () => true);
+      jest.spyOn(runner, 'runSingle').mockImplementation(async () => true);
 
       const res = await app.inject({
         method: 'GET',
@@ -59,9 +56,7 @@ describe('Item Like', () => {
 
       const item = buildItem();
       const result = LIKE_COUNT;
-      jest
-        .spyOn(runner, 'runSingle')
-        .mockImplementation(async () => result);
+      jest.spyOn(runner, 'runSingle').mockImplementation(async () => result);
 
       const res = await app.inject({
         method: 'GET',
@@ -76,9 +71,7 @@ describe('Item Like', () => {
         runner,
       });
 
-      jest
-        .spyOn(runner, 'runSingle')
-        .mockImplementation(async () => true);
+      jest.spyOn(runner, 'runSingle').mockImplementation(async () => true);
 
       const res = await app.inject({
         method: 'GET',
@@ -96,9 +89,7 @@ describe('Item Like', () => {
       });
 
       const itemLike = ITEM_LIKES[0];
-      jest
-        .spyOn(runner, 'runSingle')
-        .mockImplementation(async () => itemLike);
+      jest.spyOn(runner, 'runSingle').mockImplementation(async () => itemLike);
 
       const res = await app.inject({
         method: 'POST',
@@ -127,9 +118,7 @@ describe('Item Like', () => {
         runner,
       });
       const result = ITEM_LIKES[0];
-      jest
-        .spyOn(runner, 'runSingle')
-        .mockImplementation(async () => result);
+      jest.spyOn(runner, 'runSingle').mockImplementation(async () => result);
 
       const res = await app.inject({
         method: 'DELETE',
