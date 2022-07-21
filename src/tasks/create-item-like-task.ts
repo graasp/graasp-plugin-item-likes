@@ -1,7 +1,5 @@
-// global
-import { DatabaseTransactionHandler } from 'graasp';
-// other services
-import { Member } from 'graasp';
+import { DatabaseTransactionHandler, Member, TaskStatus } from '@graasp/sdk';
+
 // local
 import { ItemLikeService } from '../db-service';
 import { ItemLike } from '../types';
@@ -22,12 +20,12 @@ export class CreateItemLikeTask extends BaseItemLikeTask<ItemLike> {
   }
 
   async run(handler: DatabaseTransactionHandler): Promise<void> {
-    this.status = 'RUNNING';
+    this.status = TaskStatus.RUNNING;
 
     // create entry in item-like
     const memberId = this.actor.id;
     const { itemId } = this.input;
     this._result = await this.itemLikeService.createItemLike(itemId, memberId, handler);
-    this.status = 'OK';
+    this.status = TaskStatus.OK;
   }
 }

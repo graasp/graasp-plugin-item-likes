@@ -1,7 +1,5 @@
-// global
 import { FastifyPluginAsync } from 'fastify';
 
-// local
 import { ItemLikeService } from './db-service';
 import common, { create, deleteOne, getLikeCount, getLikedItems } from './schemas/schemas';
 import { TaskManager } from './task-manager';
