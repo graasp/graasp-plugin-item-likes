@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
-import Runner from 'graasp-test/src/tasks/taskRunner';
+import { TaskRunner as Runner } from 'graasp-test';
 
 import plugin from '../src/plugin';
 import build from './app';
