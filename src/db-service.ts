@@ -1,7 +1,7 @@
-// global
-import { Item } from 'graasp';
-import { sql, DatabaseTransactionConnection as TrxHandler } from 'slonik';
-// local
+import { DatabaseTransactionConnection as TrxHandler, sql } from 'slonik';
+
+import { Item } from '@graasp/sdk';
+
 import { ItemLike, LikeCount } from './types';
 
 /**
